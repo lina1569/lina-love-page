@@ -14,7 +14,8 @@
       font-family: 'Comic Sans MS', cursive, sans-serif;
       text-align: center;
       padding: 5vh 2vw;
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
     .container {
       max-width: 100%;
@@ -68,18 +69,35 @@
         transform: translateY(-200px) scale(1.5);
       }
     }
+    #videoContainer {
+      margin-top: 4vh;
+    }
+    video {
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.4);
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Я люблю тебя, Lina۶ৎ 💖</h1>
     <button id="loveButton">Лина, нажми меня 💗</button>
+    <div id="videoContainer" style="display: none;">
+      <video id="loveVideo" controls autoplay>
+        <source src="video.mp4" type="video/mp4">
+        Твой браузер не поддерживает видео :(
+      </video>
+    </div>
     <div id="heartsContainer"></div>
   </div>
   <script>
     const button = document.getElementById('loveButton');
     const heartsContainer = document.getElementById('heartsContainer');
+    const videoContainer = document.getElementById('videoContainer');
+    const loveVideo = document.getElementById('loveVideo');
     const heartTypes = ['💖', '💘', '💝', '💞', '💓', '💕', '❤️'];
+
     button.addEventListener('click', () => {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -87,9 +105,10 @@
       heart.textContent = randomHeart;
       heart.style.left = Math.random() * 100 + 'vw';
       heartsContainer.appendChild(heart);
-      setTimeout(() => {
-        heart.remove();
-      }, 2000);
+      setTimeout(() => heart.remove(), 2000);
+
+      videoContainer.style.display = 'block';
+      loveVideo.play();
     });
   </script>
 </body>
